@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Parquet Loader</title>
+    <link rel="icon" href="/static/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <header class="topbar">
+        <div>
+          <h1>Parquet Loader</h1>
+          <p id="datasetSummary" class="muted">No file loaded</p>
+        </div>
+
+        <form id="uploadForm" class="upload-form">
+          <label class="file-picker">
+            <span id="fileName">Choose parquet file</span>
+            <input id="fileInput" type="file" accept=".parquet,.parq" />
+          </label>
+          <button id="uploadButton" class="primary-button" type="submit">Load</button>
+        </form>
+      </header>
+
+      <section id="statusBar" class="status-bar" aria-live="polite">
+        <span id="statusText">Ready</span>
+      </section>
+
+      <section id="dataArea" class="data-area is-empty">
+        <aside class="column-panel">
+          <div class="panel-title">Columns</div>
+          <input id="columnFilter" class="column-filter" type="search" placeholder="Filter columns" />
+          <div id="columnList" class="column-list"></div>
+        </aside>
+
+        <section class="table-panel">
+          <div class="table-toolbar">
+            <label class="row-jump">
+              <span>Row</span>
+              <input id="jumpInput" type="number" min="1" step="1" value="1" />
+            </label>
+            <button id="jumpButton" class="secondary-button" type="button">Go</button>
+            <span id="windowLabel" class="window-label">Rows 0-0</span>
+          </div>
+
+          <div id="tableFrame" class="table-frame" aria-label="Parquet data grid">
+            <div id="headerViewport" class="header-viewport">
+              <div id="gridHeader" class="grid-row header-row"></div>
+            </div>
+            <div id="bodyViewport" class="body-viewport" tabindex="0">
+              <div id="bodyCanvas" class="body-canvas">
+                <div id="gridRows" class="grid-rows"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="cell-preview">
+            <span class="preview-label">Selected cell</span>
+            <span id="cellPreview" class="preview-value">None</span>
+          </div>
+        </section>
+      </section>
+    </main>
+
+    <script src="/static/app.js"></script>
+  </body>
+</html>
